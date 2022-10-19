@@ -9,11 +9,12 @@ def check_token(request):
     token = request.token
     if not token:
         return False, None
-
     try:
+        print(Config.SECRET_KEY)
         jwt_ = jwt.decode(token, Config.SECRET_KEY, algorithms=["HS256"])
         return True, jwt_
     except jwt.exceptions.InvalidTokenError:
+        print("xyz")
         return False, None
 
 

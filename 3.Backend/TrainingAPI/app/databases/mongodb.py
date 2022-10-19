@@ -77,16 +77,18 @@ class MongoDB:
         return None
 
     def get_user(self, username, password=None):
-        if not password: 
+        if not password:
             try:
                 get_doc = self._user_col.find_one({"username": username})
-                return get_doc 
+                return get_doc
             except Exception as ex:
                 logger.exception(ex)
             return None
         else:
             try:
-                get_doc = self._user_col.find_one({"username": username, "password": password})
+                get_doc = self._user_col.find_one(
+                    {"username": username, "password": password}
+                )
                 return get_doc
             except Exception as ex:
                 logger.exception(ex)
